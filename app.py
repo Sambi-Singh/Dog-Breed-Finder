@@ -1,4 +1,21 @@
 import requests
+from PIL import Image
+import io
+
+#To output images from an api, need Pillow library (PIL) Image module and io
+#.get(imageUrl, accepting byte streams) will give you the iamge content
+#in Image.open() you can only read files and thus it needs a path to work with, since the content
+# of the image is just numbers we about to use io.BytesIO() to make a file object out of those
+# numbers, this way our image can be opened without any issues happening
 endpoint = requests.get("https://dog.ceo/api/breeds/image/random")
 if endpoint.json()["status"] == "success":
-    print(f"{endpoint.json()["message"]}")
+    urlImage = endpoint.json()["message"]
+    #img = Image.open(urlImage)
+    #Get the image content, in bytes
+    #stream, handles when data from the response object is read to the file, by default its
+    # not done immeidatley, but if True then will automatically download content to file,
+    # very useful for streaming, processing huge images, checking header content, etc.
+    
+    img_content = requests.get(urlImage, stream=True) #Hold response OBEJCT! Headers, Status code, etc!
+    img = Image.open(io.BytesIO(img_content.content)) #.content gets us a sequence of bytes
+    img.show()

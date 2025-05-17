@@ -7,6 +7,9 @@ import io
 #in Image.open() you can only read files and thus it needs a path to work with, since the content
 # of the image is just numbers we about to use io.BytesIO() to make a file object out of those
 # numbers, this way our image can be opened without any issues happening
+breed_list = requests.get("https://dog.ceo/api/breeds/list/all")
+if(breed_list.status_code == 200):
+    print("WOrking!")
 endpoint = requests.get("https://dog.ceo/api/breeds/image/random")
 if endpoint.json()["status"] == "success":
     urlImage = endpoint.json()["message"]

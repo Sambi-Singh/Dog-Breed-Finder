@@ -7,6 +7,16 @@ import io
 #in Image.open() you can only read files and thus it needs a path to work with, since the content
 # of the image is just numbers we about to use io.BytesIO() to make a file object out of those
 # numbers, this way our image can be opened without any issues happening
+ 
+#Changing API!
+
+headers = {
+    "Content-Type": "application/json",
+    "x-api-key": "live_TTOtPXQPFGZjBSfECkRVqfTUkGz5u3d7wXh0aZYXhaZ9YuEH7PQbBn0BD1NtjdmF"
+}
+
+response = requests.get("https://api.thecatapi.com/v1/images/search", headers=headers)
+print(response.status_code)
 breed_list = requests.get("https://dog.ceo/api/breeds/list/all")
 if(breed_list.status_code == 200):
     print("WOrking!")
@@ -22,3 +32,5 @@ if endpoint.json()["status"] == "success":
     img_content = requests.get(urlImage, stream=True) #Hold response OBEJCT! Headers, Status code, etc!
     img = Image.open(io.BytesIO(img_content.content)) #.content gets us a sequence of bytes
     img.show()
+    print(urlImage)
+    #print(f"Dog breed name: {}")

@@ -15,9 +15,9 @@ headers = {
     "x-api-key": "live_TTOtPXQPFGZjBSfECkRVqfTUkGz5u3d7wXh0aZYXhaZ9YuEH7PQbBn0BD1NtjdmF"
 }
 
-response = requests.get("https://api.thecatapi.com/v1/images/search", headers=headers)
+response = requests.get("https://api.thecatapi.com/v1/images/0XYvRd7oD", headers=headers)
 print(response.status_code)
-print(response.json())
+print(response.json()["breeds"][0]["name"])
 breed_list = requests.get("https://dog.ceo/api/breeds/list/all")
 if(breed_list.status_code == 200):
     print("WOrking!")

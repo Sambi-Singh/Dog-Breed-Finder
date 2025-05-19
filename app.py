@@ -17,6 +17,7 @@ headers = {
 
 response = requests.get("https://api.thecatapi.com/v1/images/search", headers=headers)
 print(response.status_code)
+print(response.json())
 breed_list = requests.get("https://dog.ceo/api/breeds/list/all")
 if(breed_list.status_code == 200):
     print("WOrking!")

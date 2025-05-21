@@ -18,7 +18,7 @@ headers = {
 response = requests.get("https://api.thedogapi.com/v1/images/search", headers=headers)
 print(response.status_code)
 print(response.json())
-if len(response.json()[0]["breeds"][0]["name"]) > 0:
+if len(response.json()[0]["breeds"]) > 0:
     print(f"This doggies breed is a {response.json()[0]["breeds"][0]["name"]}")
 else:
     print("Sorry! couldn't find the breed of this dog :(")
